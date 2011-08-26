@@ -14,7 +14,7 @@ describe EmailExtractor::Parser::Xls do
       parser = EmailExtractor::Parser::Xls.new("./#{__FILE__}")
       lambda {
         parser.parse
-      }.should raise_error("Invalid file")
+      }.should raise_error(EmailExtractor::InvalidFile)
     end
 
     it "retreives emails from an 95-excel spreadsheet" do

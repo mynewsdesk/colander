@@ -1,3 +1,4 @@
+require 'email_extractor/invalid_file'
 require 'email_extractor/parser/base'
 require 'roo'
 
@@ -8,7 +9,7 @@ module EmailExtractor
         spreadsheet = parse_file
         @emails = collect_emails spreadsheet
       rescue TypeError, IOError
-        raise "Invalid file"
+        raise InvalidFile
       end
 
       protected
