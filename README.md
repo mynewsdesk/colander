@@ -1,6 +1,6 @@
 EmailExtractor
 ==============
-EmailExtractor is gem to collect emails from various file formats.
+EmailExtractor is a gem to collect emails from various file formats.
 
 Supported formats
 
