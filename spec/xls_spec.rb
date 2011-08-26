@@ -22,5 +22,10 @@ describe EmailExtractor::Parser::Xls do
       parser.parse
       parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
     end
+    it "retreives emails from an xls spreadsheet" do
+      parser = EmailExtractor::Parser::Xls.new("spec/fixtures/old-format.xls")
+      parser.parse
+      parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
+    end
   end
 end
