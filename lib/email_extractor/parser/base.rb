@@ -1,8 +1,8 @@
 module EmailExtractor
   module Parser
     class Base
-     def initialize(file_path)
-     end
+      attr_reader :emails
+
       def initialize(file_path)
         @file_path = file_path
       end
