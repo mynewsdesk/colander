@@ -5,13 +5,17 @@ module EmailExtractor
   module Parser
     class Xls < Base
       def parse
-        spreadsheet = Excel.new(@file_path,nil,:ignore)
+        spreadsheet = parse_file
         @emails = collect_emails spreadsheet
       rescue TypeError, IOError
         raise "Invalid file"
       end
 
       protected
+
+      def parse_file
+        Excel.new(@file_path,nil,:ignore)
+      end
 
       def collect_emails(spreadsheet)
         spreadsheet.sheets.map do |sheet|

@@ -6,6 +6,8 @@ module EmailExtractor
     parser = case file_path.split(".").last
     when "xls"
       Parser::Xls.new(file_path)
+    when "xlsx"
+      Parser::Xlsx.new(file_path)
     end
     parser.parse
     parser
