@@ -19,7 +19,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "roo", "~> 1.9.6"
+  s.add_dependency "nokogiri", "~> 1.4.4"
+  s.add_dependency "roo", "~> 1.9.5"
   s.add_dependency "zip", "~> 2.0.2"
   s.add_development_dependency "rspec"
 end
