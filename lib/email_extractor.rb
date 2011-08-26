@@ -1,3 +1,4 @@
+require 'email_extractor/invalid_file'
 require 'email_extractor/parser/xls'
 require 'email_extractor/parser/xlsx'
 
@@ -8,6 +9,8 @@ module EmailExtractor
       Parser::Xls.new(file_path)
     when "xlsx"
       Parser::Xlsx.new(file_path)
+    else
+      raise InvalidFile
     end
     parser.parse
     parser

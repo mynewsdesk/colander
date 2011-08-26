@@ -8,6 +8,12 @@ describe EmailExtractor do
       }.should raise_exception(ArgumentError)
     end
 
+    it "should raise error if file is unsupported" do
+      lambda {
+        EmailExtractor.parse("foo.bar")
+      }.should raise_error(EmailExtractor::InvalidFile)
+    end
+
     it "should not raise error if a file path is passed" do
       lambda{
         EmailExtractor.parse("/file/path")
