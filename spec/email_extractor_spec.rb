@@ -1,5 +1,4 @@
-$:.push File.expand_path("../lib", __FILE__)
-require 'email_extractor'
+require 'spec_helper'
 
 describe EmailExtractor do
   describe ".parse" do
