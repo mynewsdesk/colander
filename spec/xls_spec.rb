@@ -9,17 +9,18 @@ describe EmailExtractor::Parser::Xls do
       parser.parse
       parser.emails.sort.should eql(["bruce@wayne.com"])
     end
+
     it "raises exception if file is invalid" do
       parser = EmailExtractor::Parser::Xls.new("./#{__FILE__}")
       lambda {
         parser.parse
       }.should raise_error("Invalid file")
     end
-  end
-  describe "#emails" do
-    it "should responses to it" do
-      EmailExtractor::Parser::Base.any_instance.stub(:parse)
-      EmailExtractor::Parser::Base.new("foo/bar").should respond_to :emails
+
+    it "retreives emails from an 95-excel spreadsheet" do
+      parser = EmailExtractor::Parser::Xls.new("spec/fixtures/excel95.xls")
+      parser.parse
+      parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
     end
   end
 end
