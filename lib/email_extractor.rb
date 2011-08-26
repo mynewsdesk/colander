@@ -1,4 +1,3 @@
-require 'email_extractor/parser/base'
 require 'email_extractor/parser/xls'
 require 'email_extractor/parser/xlsx'
 
