@@ -1,7 +1,7 @@
-require 'email_extractor/parser/base'
+require 'colander/parser/base'
 require 'roo'
 
-module EmailExtractor
+module Colander
   module Parser
     class Xlsx < Xls
       protected

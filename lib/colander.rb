@@ -1,8 +1,8 @@
-require 'email_extractor/invalid_file'
-require 'email_extractor/parser/xls'
-require 'email_extractor/parser/xlsx'
+require 'colander/invalid_file'
+require 'colander/parser/xls'
+require 'colander/parser/xlsx'
 
-module EmailExtractor
+module Colander
   def self.parse(file_path, file_name = nil)
     parser = case (file_name || file_path).split(".").last
     when "xls"

@@ -1,8 +1,8 @@
-require 'email_extractor/invalid_file'
-require 'email_extractor/parser/base'
+require 'colander/invalid_file'
+require 'colander/parser/base'
 require 'roo'
 
-module EmailExtractor
+module Colander
   module Parser
     class Xls < Base
       def parse

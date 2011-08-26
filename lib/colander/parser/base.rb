@@ -1,4 +1,4 @@
-module EmailExtractor
+module Colander
   module Parser
     class Base
       attr_reader :emails

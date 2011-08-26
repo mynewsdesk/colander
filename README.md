@@ -1,6 +1,6 @@
-EmailExtractor
+Colander
 ==============
-EmailExtractor is a gem to collect emails from various file formats.
+Colander is a gem to collect emails from various file formats.
 
 Supported formats
 
@@ -10,6 +10,6 @@ Supported formats
 Usage
 -----
 
-    parser = EmailExtractor.parse("/path/to/file.xls")
+    parser = Colander.parse("/path/to/file.xls")
     parser.emails # => ["foo@bar.com"]
 
