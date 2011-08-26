@@ -14,6 +14,11 @@ describe EmailExtractor do
       }.should_not raise_exception(ArgumentError)
     end
 
+    it "accepts an option file name and returns correct parser" do
+      EmailExtractor::Parser::Xls.any_instance.stub(:parse)
+      EmailExtractor.parse("/file/path", "apa.xls").should be_a EmailExtractor::Parser::Xls
+    end
+
     it "should recognize a xls file and return correct parser" do
       path = "/foo/apa.xls"
       EmailExtractor::Parser::Xls.any_instance.stub(:parse)

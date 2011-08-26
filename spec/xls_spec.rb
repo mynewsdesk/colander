@@ -27,5 +27,10 @@ describe EmailExtractor::Parser::Xls do
       parser.parse
       parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
     end
+    it "retreives emails from an 95-excel spreadsheet without file suffix" do
+      parser = EmailExtractor::Parser::Xls.new("spec/fixtures/excel95-without-file-suffix")
+      parser.parse
+      parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
+    end
   end
 end
