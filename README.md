@@ -13,3 +13,8 @@ Usage
     parser = Colander.parse("/path/to/file.xls")
     parser.emails # => ["foo@bar.com"]
 
+or
+
+    parser = Colander.parse("/path/to/file_without_extension", "filename.xlsx")
+    parser.emails # => ["foo@bar.com"]
+
