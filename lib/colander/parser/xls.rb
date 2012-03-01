@@ -1,6 +1,7 @@
 require 'colander/invalid_file'
 require 'colander/parser/base'
 require 'roo'
+require 'iconv'
 
 module Colander
   module Parser
@@ -8,8 +9,8 @@ module Colander
       def parse
         spreadsheet = parse_file
         @emails = collect_emails spreadsheet
-      rescue TypeError, IOError
-        raise InvalidFile
+      rescue Exception => e
+        raise InvalidFile.new e
       end
 
       protected
