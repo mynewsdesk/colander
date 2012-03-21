@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency "roo", "~> 1.10.1"
   s.add_dependency "zip", "~> 2.0.2"
   s.add_development_dependency "rspec"
+  s.add_development_dependency "pry"
 end
