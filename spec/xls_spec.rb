@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Colander::Parser::Xls do
   describe "#parse" do
     it "stores found emails" do
-      Excel.stub(:new)
       parser = Colander::Parser::Xls.new("file/path")
-      parser.should_receive(:collect_emails).and_return(["bruce@wayne.com"])
+      parser.should_receive(:parse_file).and_return("bruce@wayne.com")
       parser.parse
       parser.emails.sort.should eql(["bruce@wayne.com"])
     end
@@ -26,21 +25,19 @@ describe Colander::Parser::Xls do
     end
 
     it "retreives emails from an 95-excel spreadsheet" do
-      pending "handle encoding error"
       parser = Colander::Parser::Xls.new("spec/fixtures/excel95.xls")
       parser.parse
-      parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
+      parser.emails.sort.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort)
     end
     it "retreives emails from an xls spreadsheet" do
       parser = Colander::Parser::Xls.new("spec/fixtures/old-format.xls")
       parser.parse
-      parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
+      parser.emails.sort.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort)
     end
     it "retreives emails from an 95-excel spreadsheet without file suffix" do
-      pending "handle encoding error"
       parser = Colander::Parser::Xls.new("spec/fixtures/excel95-without-file-suffix")
       parser.parse
-      parser.emails.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"])
+      parser.emails.sort.should eql(["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort)
     end
   end
 end

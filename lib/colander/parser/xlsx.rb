@@ -1,12 +1,20 @@
 require 'colander/parser/base'
-require 'roo'
-
+require 'zip'
+require 'iconv'
 module Colander
   module Parser
     class Xlsx < Xls
+
       protected
-      def parse_file
-        Excelx.new(@file_path,nil,:ignore)
+
+      def payload
+        ''.tap do |string|
+          Zip::ZipInputStream::open(@file_path) do |io|
+            while (entry = io.get_next_entry)
+              string << io.read
+            end
+          end
+        end
       end
     end
   end
