@@ -25,7 +25,7 @@ module Colander
 
       def parse_file
         ic = Iconv.new("UTF-8//IGNORE", "UTF-8")
-        std_out, std_err, exit_status = Open3.capture3("strings", :stdin_data => payload)
+        std_out, std_err, exit_status = Open3.capture3("strings", :stdin_data => ic.iconv(payload))
         if exit_status == 0
           ic.iconv(std_out)
         else
