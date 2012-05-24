@@ -1,6 +1,7 @@
 require 'colander/invalid_file'
 require 'colander/parser/xls'
 require 'colander/parser/xlsx'
+require 'colander/parser/plain'
 
 module Colander
   def self.parse(file_path, file_name = nil)
@@ -9,6 +10,8 @@ module Colander
       Parser::Xls.new(file_path)
     when "xlsx"
       Parser::Xlsx.new(file_path)
+    when "csv", "txt"
+      Parser::Plain.new(file_path)
     else
       raise InvalidFile
     end

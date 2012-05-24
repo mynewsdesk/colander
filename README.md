@@ -6,6 +6,8 @@ Supported formats
 
   * "Old" Ms Excel files, ending in .xls
   * Ms Excel files ending with .xlsx
+  * CSV, Comma-separated values
+  * Plain text files
 
 Usage
 -----
