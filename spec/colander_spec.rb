@@ -22,18 +22,16 @@ describe Colander do
 
     it "does not raise error if a file path is passed" do
       expect {
-        Colander.parse("/file/path.csv")
+        Colander.parse("spec/fixtures/plain.csv")
       }.to_not raise_error
     end
 
     it "accepts an option file name and returns correct parser" do
-      Colander::Parser::Xls.any_instance.stub(:parse)
-      expect(Colander.parse("/file/path", "apa.xls")).to be_a Colander::Parser::Xls
+      expect(Colander.parse("spec/fixtures/new-format.xlsx")).to be_a Colander::Parser::Xls
     end
 
     it "recognizes a xls file and return correct parser" do
-      path = "/foo/apa.xls"
-      Colander::Parser::Xls.any_instance.stub(:parse)
+      path = "spec/fixtures/new-format.xlsx"
       expect(Colander.parse(path)).to be_a Colander::Parser::Xls
     end
 
@@ -45,7 +43,7 @@ describe Colander do
 
     it "invokes parse method on the parser" do
       expect_any_instance_of(Colander::Parser::Xlsx).to receive(:parse)
-      Colander.parse("/foo/bar.xlsx")
+      Colander.parse("/foo/apa.xlsx")
     end
   end
 end
