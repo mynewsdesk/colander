@@ -11,7 +11,7 @@ describe Colander::Parser::Plain do
     it "retreives emails from an txt file" do
       parser = Colander::Parser::Plain.new("spec/fixtures/text.txt")
       parser.parse
-      parser.emails.sort.should eql(["jonas.forsberg@mynewsdesk.com", "kristian.hellquist@mynewsdesk.com", "richard@mynewsdesk.com"].sort)
+      expect(parser.emails.sort).to eq ["jonas.forsberg@mynewsdesk.com", "kristian.hellquist@mynewsdesk.com", "richard@mynewsdesk.com"].sort
     end
 
   end
