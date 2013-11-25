@@ -8,6 +8,12 @@ describe Colander do
       }.to raise_error
     end
 
+    it "raises error if the file couldn't be found" do
+      expect {
+        Colander.parse("/path/to/hell.csv")
+      }.to raise_error
+    end
+
     it "raises error if file is unsupported" do
       expect {
         Colander.parse("foo.bar")
