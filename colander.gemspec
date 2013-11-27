@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["dev@mynewsdesk.com"]
   s.homepage    = "http://devcorner.mynewsdesk.com"
   s.summary     = %q{Exctract an array of emails from various file formats}
-  s.description = %q{Exctract an array of emails from various file formats (xls, xlsx)}
+  s.description = %q{Exctract an array of emails from various file formats (xls, xlsx, csv, txt)}
 
   # s.rubyforge_project = "mnd_colander"
 
