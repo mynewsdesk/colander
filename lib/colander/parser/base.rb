@@ -20,7 +20,7 @@ module Colander
       protected
 
       def collect_emails
-        parse_file.scan(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b/).flatten.uniq
+        parse_file.scan(/\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}\b/).flatten.uniq
       end
 
       def parse_file

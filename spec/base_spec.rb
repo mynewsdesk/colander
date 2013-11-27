@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Colander::Parser::Base do
   describe "#emails" do
-    it "should responses to it" do
+    it "responds to email" do
       Colander::Parser::Base.any_instance.stub(:parse)
-      Colander::Parser::Base.new("foo/bar").should respond_to :emails
+      expect(Colander::Parser::Base.new("foo/bar")).to respond_to :emails
     end
   end
 
@@ -13,8 +13,8 @@ describe Colander::Parser::Base do
     Dir.entries(sample_dir).each do |file_name|
       sample = File.join(sample_dir, file_name)
       next unless File.file?(sample)
-      it "should be able to parse the sample #{file_name}" do
-        Colander.parse(sample).emails.should be_an(Array)
+      it "is able to parse the sample #{file_name}" do
+        expect(Colander.parse(sample).emails).to be_an(Array)
       end
     end
   end
