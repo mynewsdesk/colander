@@ -9,6 +9,10 @@ module Colander
       def payload
         File.read(@file_path)
       end
+
+      def parse_file
+        payload
+      end
     end
   end
 end
