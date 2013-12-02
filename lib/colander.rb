@@ -4,6 +4,8 @@ require 'colander/parser/xlsx'
 require 'colander/parser/plain'
 
 module Colander
+  EMAIL_REGEXP = /\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/
+
   def self.parse(file_path, file_name = nil)
     parser = case (file_name || file_path).split(".").last
     when "xls"
