@@ -24,15 +24,18 @@ module Colander
       end
 
       def parse_file
-        ic = Iconv.new("UTF-8//IGNORE", "UTF-8")
-        std_out, std_err, exit_status = Open3.capture3("strings", :stdin_data => ic.iconv(payload))
+        std_out, std_err, exit_status = Open3.capture3("strings", :stdin_data => force_utf8_encoding(payload))
         if exit_status == 0
-          ic.iconv(std_out)
+          force_utf8_encoding(std_out)
         else
           raise RuntimeError.new(std_err)
         end
       end
 
+      def force_utf8_encoding(string)
+        string.force_encoding("iso-8859-1").
+          encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")
+      end
     end
   end
 end

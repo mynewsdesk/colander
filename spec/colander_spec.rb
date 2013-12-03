@@ -27,7 +27,8 @@ describe Colander do
     end
 
     it "accepts an option file name and returns correct parser" do
-      expect(Colander.parse("spec/fixtures/new-format.xlsx")).to be_a Colander::Parser::Xls
+      path = "spec/fixtures/new-format.xlsx"
+      expect(Colander.parse(path)).to be_a Colander::Parser::Xls
     end
 
     it "recognizes a xls file and return correct parser" do
@@ -37,7 +38,7 @@ describe Colander do
 
     it "recognizes a xlsx file and return correct parser" do
       path = "/foo/apa.xlsx"
-      Colander::Parser::Xlsx.any_instance.stub(:parse)
+      allow_any_instance_of(Colander::Parser::Xlsx).to receive(:parse)
       expect(Colander.parse(path)).to be_a Colander::Parser::Xlsx
     end
 
