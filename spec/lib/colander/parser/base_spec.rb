@@ -3,9 +3,20 @@ require 'spec_helper'
 describe Colander::Parser::Base do
   let(:parser){ Colander::Parser::Base.new('foo/bar') }
 
+  describe "#headers" do
+    it "responds to headers" do
+      expect(parser).to respond_to :headers
+    end
+
+    it "caches the result" do
+      expect(parser).to receive(:collect_headers).exactly(:once){ [] }
+      2.times { parser.headers }
+    end
+  end
+
   describe "#emails" do
     it "responds to email" do
-      expect(Colander::Parser::Base.new("foo/bar")).to respond_to :emails
+      expect(parser).to respond_to :emails
     end
 
     it "caches the result" do

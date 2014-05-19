@@ -6,6 +6,10 @@ module Colander
         @file_path = file_path
       end
 
+      def headers
+        @headers ||= collect_headers
+      end
+
       def emails
         @emails ||= collect_emails
       end
@@ -15,6 +19,10 @@ module Colander
       end
 
       protected
+
+      def collect_headers
+        raise "plz implement me in"
+      end
 
       def collect_emails
         parse_file.scan(EMAIL_REGEXP).flatten.uniq
@@ -30,7 +38,6 @@ module Colander
           raise RuntimeError.new(std_err)
         end
       end
-
     end
   end
 end
