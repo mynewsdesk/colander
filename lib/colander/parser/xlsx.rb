@@ -1,6 +1,6 @@
 require 'colander/parser/base'
 require 'zip'
-require 'iconv'
+
 module Colander
   module Parser
     class Xlsx < Xls
