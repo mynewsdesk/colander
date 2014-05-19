@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Colander::Parser::Base do
   describe "#emails" do
     it "responds to email" do
-      Colander::Parser::Base.any_instance.stub(:parse)
+      allow_any_instance_of(Colander::Parser::Base).to receive(:parse)
       expect(Colander::Parser::Base.new("foo/bar")).to respond_to :emails
     end
   end

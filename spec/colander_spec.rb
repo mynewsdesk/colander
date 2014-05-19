@@ -37,7 +37,7 @@ describe Colander do
 
     it "recognizes a xlsx file and return correct parser" do
       path = "/foo/apa.xlsx"
-      Colander::Parser::Xlsx.any_instance.stub(:parse)
+      allow_any_instance_of(Colander::Parser::Xlsx).to receive(:parse)
       expect(Colander.parse(path)).to be_a Colander::Parser::Xlsx
     end
 
