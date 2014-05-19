@@ -1,16 +1,13 @@
 module Colander
   module Parser
     class Base
-      attr_reader :emails
 
       def initialize(file_path)
         @file_path = file_path
       end
 
-      def parse
-        @emails = collect_emails
-      rescue Exception => e
-        raise InvalidFile.new e
+      def emails
+        @emails ||= collect_emails
       end
 
       def payload
@@ -21,6 +18,8 @@ module Colander
 
       def collect_emails
         parse_file.scan(EMAIL_REGEXP).flatten.uniq
+      rescue Exception => e
+        raise InvalidFile.new e
       end
 
       def parse_file

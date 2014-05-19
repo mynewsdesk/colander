@@ -1,18 +1,17 @@
 require 'spec_helper'
 
 describe Colander::Parser::Xls do
-  describe "#parse" do
+  describe "#emails" do
     it "stores found emails" do
       parser = Colander::Parser::Xls.new("file/path")
       expect(parser).to receive(:parse_file).and_return("bruce@wayne.com")
-      parser.parse
       expect(parser.emails.sort).to eq ["bruce@wayne.com"]
     end
 
     it "raises exception if file is invalid" do
       parser = Colander::Parser::Xls.new("./#{__FILE__}")
       expect {
-        parser.parse
+        parser.emails
       }.to raise_error
     end
 
@@ -20,23 +19,20 @@ describe Colander::Parser::Xls do
       parser = Colander::Parser::Xls.new("file/path")
       expect(parser).to receive(:parse_file).and_raise(RuntimeError.new("FUUU"))
       expect {
-        parser.parse
+        parser.emails
       }.to raise_error
     end
 
     it "retreives emails from an 95-excel spreadsheet" do
       parser = Colander::Parser::Xls.new("spec/fixtures/excel95.xls")
-      parser.parse
       expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
     end
     it "retreives emails from an xls spreadsheet" do
       parser = Colander::Parser::Xls.new("spec/fixtures/old-format.xls")
-      parser.parse
       expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
     end
     it "retreives emails from an 95-excel spreadsheet without file suffix" do
       parser = Colander::Parser::Xls.new("spec/fixtures/excel95-without-file-suffix")
-      parser.parse
       expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
     end
   end
