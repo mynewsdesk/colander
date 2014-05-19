@@ -9,7 +9,7 @@ describe Colander::Parser::Base do
   end
 
   describe ".parse" do
-    sample_dir = File.join(File.dirname(File.expand_path(__FILE__)), "fixtures", "samples")
+    sample_dir = File.join(FIXTURES_DIR, "samples")
     Dir.entries(sample_dir).each do |file_name|
       sample = File.join(sample_dir, file_name)
       next unless File.file?(sample)
