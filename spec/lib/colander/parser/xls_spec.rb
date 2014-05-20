@@ -23,17 +23,37 @@ describe Colander::Parser::Xls do
       }.to raise_error
     end
 
-    it "retreives emails from an 95-excel spreadsheet" do
-      parser = Colander::Parser::Xls.new("spec/fixtures/excel95.xls")
-      expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
+    context "with a 95-excel spreadsheet without headers" do
+      let(:parser){ Colander::Parser::Xls.new("spec/fixtures/excel95.xls") }
+      describe "#emails" do
+        it "retreives emails from an the spreadsheet" do
+          expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
+        end
+      end
+
+      describe "#headers" do
+        it "returns an empty array" do
+          expect(parser.headers).to eq []
+        end
+      end
     end
-    it "retreives emails from an xls spreadsheet" do
-      parser = Colander::Parser::Xls.new("spec/fixtures/old-format.xls")
-      expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
+
+    context "with a xls excel spreadsheet" do
+      let(:parser){ Colander::Parser::Xls.new("spec/fixtures/old-format.xls") }
+      describe "#emails" do
+        it "retreives emails from an the spreadsheet" do
+          expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
+        end
+      end
     end
-    it "retreives emails from an 95-excel spreadsheet without file suffix" do
-      parser = Colander::Parser::Xls.new("spec/fixtures/excel95-without-file-suffix")
-      expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
+
+    context "with a 95-excel spreadsheet without file suffix" do
+      let(:parser){ Colander::Parser::Xls.new("spec/fixtures/excel95-without-file-suffix") }
+      describe "#emails" do
+        it "retreives emails from the spreadsheet" do
+          expect(parser.emails.sort).to eq ["markus.nordin@mynewsdesk.com", "markus@hej.se", "sven@bertil.se", "Adam.A@hotmail.com", "apa@elabs.se", "liam@neeson.net", "david@mynewsdesk.com"].sort
+        end
+      end
     end
   end
 end

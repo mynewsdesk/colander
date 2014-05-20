@@ -6,14 +6,10 @@ module Colander
   module Parser
     class Csv < Base
 
-      def headers
-        roo.row(roo.first_row).map &:strip
-      end
-
       protected
 
-      def roo
-        Roo::CSV.new(@file_path)
+      def spreadsheet
+        @spreadsheet = Roo::CSV.new(@file_path)
       end
 
       def payload

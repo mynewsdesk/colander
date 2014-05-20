@@ -1,11 +1,16 @@
 require 'colander/parser/base'
 require 'zip'
+require 'roo'
 
 module Colander
   module Parser
     class Xlsx < Xls
 
       protected
+
+      def spreadsheet
+        @spreadsheet ||= Roo::Excelx.new(@file_path)
+      end
 
       def payload
         ''.tap do |string|

@@ -20,14 +20,25 @@ module Colander
 
       protected
 
-      def collect_headers
-        raise "plz implement me in"
-      end
-
       def collect_emails
         parse_file.scan(EMAIL_REGEXP).flatten.uniq
       rescue Exception => e
         raise InvalidFile.new e
+      end
+
+      def collect_headers
+        return [] unless first_row_is_headers?
+        first_row.map do |cell|
+          cell.strip if cell.is_a?(String)
+        end
+      end
+
+      def first_row
+        spreadsheet.row(spreadsheet.first_row)
+      end
+
+      def first_row_is_headers?
+        !first_row.to_s.match EMAIL_REGEXP
       end
 
       def parse_file
