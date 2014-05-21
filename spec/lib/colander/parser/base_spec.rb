@@ -33,4 +33,11 @@ describe Colander::Parser::Base do
       end
     end
   end
+
+  describe "#rows" do
+    it "caches the result" do
+      expect(parser).to receive(:collect_rows).exactly(:once){ [] }
+      2.times { parser.rows }
+    end
+  end
 end

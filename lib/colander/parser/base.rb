@@ -14,6 +14,10 @@ module Colander
         @emails ||= collect_emails
       end
 
+      def rows
+        @rows ||= collect_rows
+      end
+
       def payload
         raise "plz implement me in"
       end
@@ -31,6 +35,11 @@ module Colander
         first_row.map do |cell|
           cell.strip if cell.is_a?(String)
         end
+      end
+
+      def collect_rows
+        start_at = first_row_is_headers? ? 1 : 0
+        spreadsheet.parse(headers: first_row_is_headers?)[start_at..-1]
       end
 
       def first_row

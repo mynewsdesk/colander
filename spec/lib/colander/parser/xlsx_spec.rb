@@ -18,6 +18,20 @@ describe Colander::Parser::Xlsx do
         expect(parser.headers).to eq ["Email", "name", "Company"]
       end
     end
+
+    describe '#rows' do
+      it "returns an array of rows" do
+        expect(parser.rows).to be_a Array
+      end
+
+      it "each row is a hash with the headers as key" do
+        row = parser.rows.first
+        expect(row).to be_a Hash
+        expect(row.keys).to eq ["Email", "name", "Company"]
+        expect(row.values).to eq ["kalle.anka@ankeborg.se", "Kalle Anka", "Ankeborg"]
+        expect(parser.rows.last["Email"]).to eq "bruce@wayne.com"
+      end
+    end
   end
 
   context "with a file without headers" do
