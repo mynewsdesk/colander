@@ -5,33 +5,12 @@ describe Colander::Parser::Xlsx do
   end
 
   context "with file with headers" do
-    let(:parser){ Colander::Parser::Xlsx.new("spec/fixtures/with-headers.xlsx") }
-    describe "#emails" do
-      it "retreives emails from an the spreadsheet" do
-        pending 'not working :/'
-        expect(parser.emails.sort).to eq ["kalle.anka@ankeborg.se", "bruce@wayne.com"].sort
-      end
-    end
+    let(:file_with_headers){ "spec/fixtures/with-headers.xlsx" }
+    let(:headers){ ["Email", "name", "Company"] }
+    let(:emails){ ["kalle.anka@ankeborg.se", "bruce@wayne.com"] }
+    let(:first_row_values){ ["kalle.anka@ankeborg.se", "Kalle Anka", "Ankeborg"] }
 
-    describe "#headers" do
-      it "returns an empty array" do
-        expect(parser.headers).to eq ["Email", "name", "Company"]
-      end
-    end
-
-    describe '#rows' do
-      it "returns an array of rows" do
-        expect(parser.rows).to be_a Array
-      end
-
-      it "each row is a hash with the headers as key" do
-        row = parser.rows.first
-        expect(row).to be_a Hash
-        expect(row.keys).to eq ["Email", "name", "Company"]
-        expect(row.values).to eq ["kalle.anka@ankeborg.se", "Kalle Anka", "Ankeborg"]
-        expect(parser.rows.last["Email"]).to eq "bruce@wayne.com"
-      end
-    end
+    it_behaves_like "a spreadsheet parser"
   end
 
   context "with a file without headers" do

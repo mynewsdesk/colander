@@ -32,9 +32,7 @@ module Colander
 
       def collect_headers
         return [] unless first_row_is_headers?
-        first_row.map do |cell|
-          cell.strip if cell.is_a?(String)
-        end
+        first_row
       end
 
       def collect_rows
